@@ -205,7 +205,7 @@
   <joint name="depth_camera_joint" type="fixed">
     <parent link="base_link" />
     <child link="depth_camera_link" />
-    <origin xyz="${-chassis_length/2 + 0.015} 0 0" rpy="0 0 ${pi}" />
+    <origin xyz="${-chassis_length/2 - 0.015} 0 0" rpy="0 0 ${pi}" />
   </joint>
 
   <!-- TODO (exercise Step 1): IMU at the centre of the chassis.

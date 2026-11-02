@@ -316,3 +316,11 @@ ros2 node list
 ros2 topic list
 ```
 # What did not work:
+```text
+At first the robot would not move when started through the launch file because square_driver began sending action goals before gazebo had fully rendered the robot. As a result the first attempts failed before the simulation environment was ready. To resolve this issue asynchronous execution was introduced to delay the execution until gazebo has intialized the robot.
+
+The turns the robot makes are not perfectly accurate. Small rotational errors accumulate over time likely due to communication delays and latency in message passing between ROS 2 nodes and the simulator.
+
+I can't get the IMU to publish at 50Hz, there is a noticeable drop from that number. This can affect the timing and consistency of sensor updates contributing additional error to state estimation and motion control. The reduced update rate may be caused by simulator load, message-bridging overhead between Gazebo and ROS 2, or resource limitations while multiple nodes and sensors are running simultaneously on WSL.
+As a result the robot generally completes the square and returns close to its starting position although small deviations final position may occur.
+```
